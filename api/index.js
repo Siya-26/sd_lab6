@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const connectionString = process.env.MONGODB_CONNECTION_STRING;
+const corsOrigin = process.env.CORS_ORIGIN;
+
 //create cars api using express
 const express = require('express');
 const app = express();
@@ -46,7 +51,8 @@ app.post('/cars', (req, res) => {
     res.json(newCar);
 });
 
-//start app at localhost:3001
-app.listen(3001, () => {
-    console.log('Server started at http://localhost:3001');
+//start app at localhost:3001 or on Azure
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+    console.log(`Server started at http://localhost:${port}`);
 });
